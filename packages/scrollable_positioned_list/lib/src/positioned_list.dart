@@ -44,10 +44,13 @@ class PositionedList extends StatefulWidget {
     this.addSemanticIndexes = true,
     this.addRepaintBoundaries = true,
     this.addAutomaticKeepAlives = true,
+    this.clamp = false,
   })  : assert(itemCount != null),
         assert(itemBuilder != null),
         assert((positionedIndex == 0) || (positionedIndex < itemCount)),
         super(key: key);
+
+  final bool clamp;
 
   /// Number of items the [itemBuilder] can produce.
   final int itemCount;
@@ -168,6 +171,7 @@ class _PositionedListState extends State<PositionedList> {
   Widget build(BuildContext context) => RegistryWidget(
         elementNotifier: registeredElements,
         child: UnboundedCustomScrollView(
+          clamp: widget.clamp,
           anchor: widget.alignment,
           center: _centerKey,
           controller: scrollController,

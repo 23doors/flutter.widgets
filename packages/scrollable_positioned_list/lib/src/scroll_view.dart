@@ -13,6 +13,7 @@ import 'viewport.dart';
 /// to be within 0 and 1. See [CustomScrollView] for more information.
 class UnboundedCustomScrollView extends CustomScrollView {
   final bool _shrinkWrap;
+  final bool _clamp;
 
   const UnboundedCustomScrollView({
     Key? key,
@@ -28,8 +29,10 @@ class UnboundedCustomScrollView extends CustomScrollView {
     List<Widget> slivers = const <Widget>[],
     int? semanticChildCount,
     DragStartBehavior dragStartBehavior = DragStartBehavior.start,
+    bool clamp = false,
   })  : _shrinkWrap = shrinkWrap,
         _anchor = anchor,
+        _clamp = clamp,
         super(
           key: key,
           scrollDirection: scrollDirection,
@@ -78,6 +81,7 @@ class UnboundedCustomScrollView extends CustomScrollView {
       cacheExtent: cacheExtent,
       center: center,
       anchor: anchor,
+      clamp: _clamp,
     );
   }
 }
